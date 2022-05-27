@@ -1,5 +1,5 @@
 import LinkModel from './link.mongoose.model'
-import * as nanoidUtils from '../../../utils/nanoid' 
+import * as nanoidUtils from '../../../utils/nanoid.util' 
 
 import { TypeGenNewLinkParams, } from './types'
 
