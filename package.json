@@ -2,24 +2,20 @@
   "name": "louis-my-link",
   "version": "1.0.0",
   "description": "link shortener",
-  "main": "index.js",
+  "main": "build/main.js",
+  "author": "Louis Phan <louis.phhh@gmail.com>",
   "scripts": {
     "start:dev": "ts-node-dev --respawn --pretty --transpile-only src/main",
     "build": "rimraf build && tsc",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --fix --ext .ts"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
+    "lint:fix": "eslint . --fix --ext .ts",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/louis-phhh/louis-my-link.git"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/louis-phhh/louis-my-link/issues"
