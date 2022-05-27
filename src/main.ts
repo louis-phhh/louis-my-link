@@ -1,1 +1,5 @@
-console.log('abc')
+import { config, } from 'dotenv'
+
+config()
+
+import './app'
