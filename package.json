@@ -1,0 +1,37 @@
+{
+  "name": "louis-my-link",
+  "version": "1.0.0",
+  "description": "link shortener",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "ts-node-dev --respawn --pretty --transpile-only src/main",
+    "build": "rimraf build && tsc",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --fix --ext .ts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/louis-phhh/louis-my-link.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/louis-phhh/louis-my-link/issues"
+  },
+  "homepage": "https://github.com/louis-phhh/louis-my-link#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "eslint": "^8.16.0",
+    "husky": "^8.0.1",
+    "rimraf": "^3.0.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.7.2"
+  }
+}
