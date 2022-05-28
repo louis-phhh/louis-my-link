@@ -1,24 +1,29 @@
 import LinkModel from './link.mongoose.model'
-import * as nanoidUtils from '../../../utils/nanoid.util' 
+import { injectable, } from 'inversify'
 
-import { TypeGenNewLinkParams, } from './types'
+import * as nanoidUtils from '../../../utils/nanoid.util' 
+import { IServiceLink, TypeGenNewLinkParams, } from './types'
 
 const genLinkToken = nanoidUtils.getGenFunction('nolookalikesSafe', 7)
 
-export async function genNewLink(params: TypeGenNewLinkParams) {
+@injectable()
+export class CServiceLink implements IServiceLink {
 
-  const linkToken = genLinkToken()
-  const createLinkParams = {
-    originalUrl: params.originalUrl,
-    token: linkToken,
+  genNewLink = async (params: TypeGenNewLinkParams) => {
+
+    const linkToken = genLinkToken()
+    const createLinkParams = {
+      originalUrl: params.originalUrl,
+      token: linkToken,
+    }
+    
+    const newLink = (await LinkModel.create(createLinkParams)).toObject()
+  
+    return newLink
   }
-  
-  const newLink = await (await LinkModel.create(createLinkParams))
-  
-  return newLink
-}
 
-export async function getLinkById(linkId: number) {
-  const link = await LinkModel.findOne({ id: linkId, })
-  return link
+  getLinkById = async (linkId: number) => {
+    const link = await LinkModel.findOne({ id: linkId, })
+    return link
+  }
 }

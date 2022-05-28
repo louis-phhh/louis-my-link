@@ -4,6 +4,8 @@ import helmet from 'helmet'
 import compression from 'compression'
 import config from 'config'
 
+import './inversify.config'
+
 import { CONFIG_NAME, LOGGER_ID, } from './constants'
 import { createLogger, } from './logger'
 

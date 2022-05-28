@@ -1,39 +1,48 @@
-import { Request, Response, } from 'express'
+import { Response, } from 'express'
+import { inject, injectable, } from 'inversify'
+import { DEPENDENCIES_ID, } from '../../../constants'
 
-import * as LinkService from './link.service'
-import { TypeEmpty, TypeGetLinkByIdPathParams, } from './types'
+import { IControllerLink, IServiceLink, TypeRequestGenNewLink, TypeRequestGetLinkById, } from './types'
 
-export async function getLinkById(req: Request<TypeGetLinkByIdPathParams, TypeEmpty, TypeEmpty, TypeEmpty>, res: Response) {
-  const {
-    link_id: linkId,
-  } = req.params
+@injectable()
+export class CControllerLink implements IControllerLink {
 
-  const link = await LinkService.getLinkById(linkId)
+  public constructor(
+    @inject(DEPENDENCIES_ID.SERVICE_LINK) private readonly serviceLink: IServiceLink,
+  ) {}
 
-  res.json(
-    link ?
-      {
-        link_id: link.id,
-        original_url: link.originalUrl,
-        token: link.token,
-      } :
-      {}
-  )
-}
-
-export async function genNewLink(req: Request, res: Response) {
-  const {
-    original_url: originalUrl,
-  } = req.body
-
-  const genNewLinkParams = {
-    originalUrl,
+  getLinkById = async (req: TypeRequestGetLinkById, res: Response) => {
+    const {
+      link_id: linkId,
+    } = req.params
+    
+    const link = await this.serviceLink.getLinkById(linkId)
+  
+    res.json(
+      link ?
+        {
+          link_id: link.id,
+          original_url: link.originalUrl,
+          token: link.token,
+        } :
+        {}
+    )
   }
-  const newLink = await LinkService.genNewLink(genNewLinkParams)
 
-  res.json({
-    link_id: newLink.id,
-    original_url: newLink.originalUrl,
-    token: newLink.token,
-  })
+  genNewLink = async (req: TypeRequestGenNewLink, res: Response) => {
+    const {
+      original_url: originalUrl,
+    } = req.body
+
+    const genNewLinkParams = {
+      originalUrl,
+    }
+    const newLink = await this.serviceLink.genNewLink(genNewLinkParams)
+  
+    res.json({
+      link_id: newLink.id,
+      original_url: newLink.originalUrl,
+      token: newLink.token,
+    })
+  }
 }
