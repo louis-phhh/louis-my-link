@@ -3,8 +3,9 @@ import { injectable, } from 'inversify'
 
 import * as nanoidUtils from '../../../utils/nanoid.util' 
 import { IServiceLink, TypeGenNewLinkParams, } from './types'
+import { LINK_TOKEN_LENGTH, } from './link.constant'
 
-const genLinkToken = nanoidUtils.getGenFunction('nolookalikesSafe', 7)
+const genLinkToken = nanoidUtils.getGenFunction('nolookalikesSafe', LINK_TOKEN_LENGTH)
 
 @injectable()
 export class CServiceLink implements IServiceLink {
