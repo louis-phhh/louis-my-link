@@ -1,6 +1,6 @@
 
 import { Request, } from 'express'
-import { TypeHandlerCommon, } from '../../../types'
+import { TypeHandlerCommon, } from '../../../../types'
 
 export interface IControllerLink {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -12,6 +12,7 @@ export interface IControllerLink {
 export interface IServiceLink {
   genNewLink: (params: TypeGenNewLinkParams) => Promise<ILink>;
   getLinkById: (id: number) => Promise<ILink | null>;
+  getLinkByToken: (token: string) => Promise<ILink | null>;
 }
 
 export interface ILink {

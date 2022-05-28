@@ -1,7 +1,7 @@
 import LinkModel from './link.mongoose.model'
 import { injectable, } from 'inversify'
 
-import * as nanoidUtils from '../../../utils/nanoid.util' 
+import * as nanoidUtils from '../../../../utils/nanoid.util' 
 import { IServiceLink, TypeGenNewLinkParams, } from './types'
 import { LINK_TOKEN_LENGTH, } from './link.constant'
 
@@ -24,7 +24,12 @@ export class CServiceLink implements IServiceLink {
   }
 
   getLinkById = async (linkId: number) => {
-    const link = await LinkModel.findOne({ id: linkId, })
+    const link = await LinkModel.findOne({ id: linkId, }).lean()
+    return link
+  }
+
+  getLinkByToken = async (linkToken: string) => {
+    const link = await LinkModel.findOne({ token: linkToken, }).lean()
     return link
   }
 }

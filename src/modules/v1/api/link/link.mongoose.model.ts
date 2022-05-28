@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-import { genRandomIdForMongoDocument, } from '../../../utils/nanoid.util'
+import { genRandomIdForMongoDocument, } from '../../../../utils/nanoid.util'
 
 import { ILink, } from './types'
 

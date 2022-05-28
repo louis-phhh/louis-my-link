@@ -1,6 +1,6 @@
 import { Response, } from 'express'
 import { inject, injectable, } from 'inversify'
-import { DEPENDENCIES_ID, } from '../../../constants'
+import { DEPENDENCIES_ID, } from '../../../../constants'
 
 import { IControllerLink, IServiceLink, TypeRequestGenNewLink, TypeRequestGetLinkById, } from './types'
 
