@@ -33,6 +33,8 @@ function getLogFormat(id: string) {
   )
 }
 
+export type TypeCreateLoggerFunc = (id: string) => winston.Logger
+
 export function createLogger(id: string) {
   return winston.loggers.add(id, {
     format:getLogFormat(id),

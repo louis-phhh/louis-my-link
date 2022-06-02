@@ -4,14 +4,15 @@ import helmet from 'helmet'
 import compression from 'compression'
 import config from 'config'
 
-import './inversify.config'
+import { myContainer, } from './inversify.config'
 
-import { CONFIG_NAME, LOGGER_ID, } from './constants'
-import { createLogger, } from './logger'
+import { CONFIG_NAME, DEPENDENCIES_ID, LOGGER_ID, } from './constants'
 
 import { mongodbConnect, } from './libs/mongoose'
 import * as v1Module from './modules/v1'
+import { TypeCreateLoggerFunc, } from './logger'
 
+const createLogger = myContainer.get<TypeCreateLoggerFunc>(DEPENDENCIES_ID.LOGGER_CREATOR)
 const appLogger = createLogger(LOGGER_ID.APP)
 const app = express()
 
