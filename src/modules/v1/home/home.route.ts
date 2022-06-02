@@ -1,7 +1,7 @@
 import { Router, } from 'express'
 import { DEPENDENCIES_ID, } from '../../../constants'
 import { myContainer, } from '../../../inversify.config'
-import { IControllerLinkRedirect, } from './types'
+import { IControllerHome, } from './types'
 
 const ROUTE_PREFIX = '/'
 
@@ -9,8 +9,8 @@ const moduleRouter = Router()
 const actionRouter = Router()
 moduleRouter.use(ROUTE_PREFIX, actionRouter)
 
-const controllerLinkRedirect = myContainer.get<IControllerLinkRedirect>(DEPENDENCIES_ID.CONTROLLER_LINK_REDIRECT)
+const controllerHome = myContainer.get<IControllerHome>(DEPENDENCIES_ID.CONTROLLER_HOME)
 
-actionRouter.get('/:link_token', controllerLinkRedirect.linkRedirect)
+actionRouter.get('/', controllerHome.home)
 
 export default moduleRouter
