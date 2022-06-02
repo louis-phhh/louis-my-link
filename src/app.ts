@@ -52,19 +52,12 @@ app.use((req, res) => {
       message: 'Endpoint not found!',
     })
   }
-  
   return res.render(VIEW_NAME.NOT_FOUND, { layout: false, })
 })
 
 // eslint-disable-next-line no-unused-vars
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use(function (err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
-  // if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
-  //   return res.status(400).json({
-  //     message: 'Invalid input!',
-  //   })
-  // }
-
   appLogger.error('An error has occurred:', err)
   if (req.path.startsWith(ROUTE_PREFIX.API)) {
     res.status(500).json({
