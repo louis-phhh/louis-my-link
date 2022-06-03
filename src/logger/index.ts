@@ -4,6 +4,8 @@ import config from 'config'
 import { CONFIG_NAME, ENV_NAME, } from '../constants'
 
 function getTransport() {
+  return new winston.transports.Console()
+
   const envName = config.get(CONFIG_NAME.ENV)
   if (envName === ENV_NAME.DEV) {
     return new winston.transports.Console()
