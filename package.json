@@ -9,8 +9,9 @@
   },
   "scripts": {
     "start:dev": "ts-node-dev --respawn --pretty --transpile-only src/main",
-    "start": "node build/main",
-    "build": "rimraf build && tsc",
+    "start": "node build/src/main",
+    "move-asset": "ncp src/config build/src/config && ncp src/public build/src/public && ncp src/views build/src/views",
+    "build": "rimraf build && tsc && npm run move-asset",
     "postinstall": "npm run build",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --fix --ext .ts",
@@ -38,6 +39,7 @@
     "@typescript-eslint/parser": "^5.26.0",
     "eslint": "^8.16.0",
     "husky": "^8.0.1",
+    "ncp": "^2.0.0",
     "rimraf": "^3.0.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.7.2"
