@@ -24,6 +24,7 @@ export class CControllerLink implements IControllerLink {
           link_id: link.id,
           original_url: link.originalUrl,
           token: link.token,
+          shortened_link: this.serviceLink.getShortenedLink(link),
         } :
         {}
     )
@@ -32,17 +33,23 @@ export class CControllerLink implements IControllerLink {
   genNewLink = async (req: TypeRequestGenNewLink, res: Response) => {
     const {
       original_url: originalUrl,
+      custom_alias: customAlias,
     } = req.body
 
     const genNewLinkParams = {
       originalUrl,
+      customAlias,
     }
-    const newLink = await this.serviceLink.genNewLink(genNewLinkParams)
+    const { link: newLink, code: genNewLinkResult, } = await this.serviceLink.genNewLink(genNewLinkParams)
   
     res.json({
-      link_id: newLink.id,
-      original_url: newLink.originalUrl,
-      token: newLink.token,
+      code: genNewLinkResult,
+      data: {
+        link_id: newLink?.id,
+        original_url: newLink?.originalUrl,
+        token: newLink?.token,
+        shortened_link: newLink ? this.serviceLink.getShortenedLink(newLink) : undefined,
+      },
     })
   }
 }

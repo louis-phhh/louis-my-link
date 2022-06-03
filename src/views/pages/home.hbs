@@ -1,16 +1,23 @@
 {{#section 'title'}}My Link{{/section}}
-<div class="flex justify-center min-h-screen items-center">
-  <div class="w-1/4 p-4">
-    <div class="relative pb-[200%]">
-      <img
-        class="absolute h-full w-full object-cover rounded-lg shadow-md"
-        src="https://m.media-amazon.com/images/M/MV5BYzE5MjY1ZDgtMTkyNC00MTMyLThhMjAtZGI5OTE1NzFlZGJjXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_FMjpg_UX1000_.jpg"
-      />
+<div class="w-screen h-screen bg-[#e6ccb2]">
+  <div id="divMainContainer" class="container h-full  mx-auto flex flex-col items-center justify-center">
+    <h1 class="text-5xl font-bold -translate-y-10">Hai Hau</h1>
+    <h2 class="text-2xl">Make better links</h2>
+    
+    <div class="relative mt-4 w-4/5 max-w-xl">
+      <i class="fa-solid fa-link absolute top-1/2 -translate-y-1/2 ml-2"></i>
+      <input id="txtOriginalLink" class="block w-full outline-offset-4 outline-4 rounded-lg p-3 pl-8" placeholder="Your original link (*)" name="originalUrl" type="text"/>
     </div>
-    <div class="px-4 -mt-8 relative z-10">
-      <div class="font-bold bg-white p-6 shadow-xl rounded-lg">
-        <h2>Deadpool</h2>
-      </div>
+    <div class="relative mt-3 w-4/5 max-w-xl">
+      <i class="fa-solid fa-hand-holding-heart absolute top-1/2 -translate-y-1/2 ml-2"></i>
+      <input id="txtCustomAlias" class="block w-full outline-offset-4 outline-4 rounded-lg p-3 pl-8" placeholder="Custom alias (optional)" name="customAlias" type="text"/>
     </div>
+    <button id="btnMakeLink" class="text-lg mt-4 block bg-[#7f5539] hover:bg-[#b08968] font-bold text-white p-3 rounded">
+      <i id="iconLoading" class="fa-solid fa-gear animate-spin mr-3 !hidden"></i>Make Link
+    </button>
   </div>
 </div>
+
+{{#section 'js'}}
+<script src="/js/pages/home.js" type="text/javascript"></script>
+{{/section}}

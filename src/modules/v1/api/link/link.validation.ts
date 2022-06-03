@@ -10,5 +10,6 @@ export const validateGetLinkByIdRequest = genValidationMiddleware({
 export const validateGenNewLinkRequest = genValidationMiddleware({
   body: joi.object({
     original_url: joi.string().required().invalid(null, ''),
+    custom_alias: joi.string().optional().allow(''),
   }),
 })

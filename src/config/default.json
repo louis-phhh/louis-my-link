@@ -2,5 +2,6 @@
   "logger": {
     "log-filename": "logs/louis-my-link-%DATE%.log"
   },
-  "mongodb-uri": "mongodb://localhost:27017/louis-my-link"
+  "mongodb-uri": "mongodb://localhost:27017/louis-my-link",
+  "redirect-url": "http://localhost:2404"
 }

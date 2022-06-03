@@ -12,7 +12,8 @@ const linkSchema = new mongoose.Schema<ILink>(
       default: genRandomIdForMongoDocument,
     },
     originalUrl: { type: String, required: true, },
-    token: { type: String, required: true, },
+    token: { type: String, required: true, unique: true, },
+    isCustomized: { type: Boolean, default: false, },
   },
   {
     timestamps: true,
