@@ -74,9 +74,10 @@ function validateAndGenNewLink(e) {
     })
   }).catch((err) => {
     alert('Error: Can not create your link! please try again <3')
+  }).finally(() => {
+    afterMakeLink()
   })
   
-  afterMakeLink()
 }
 
 function beforeMakeLink() {
