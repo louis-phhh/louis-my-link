@@ -61,7 +61,7 @@ app.use((req, res) => {
 app.use(function (err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
   appLogger.error('An error has occurred:', err)
   if (req.path.startsWith(ROUTE_PREFIX.API)) {
-    res.status(500).json({
+    return res.status(500).json({
       message: 'An error has occurred!',
     })
   }
