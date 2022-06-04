@@ -14,7 +14,6 @@
     "build": "rimraf build && tsc && npm run move-asset",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --fix --ext .ts",
-    "prepare": "husky install",
     "watchcss": "npx tailwindcss -i ./src/public/css/tailwind.css -o ./src/public/css/styles.css --watch --minify"
   },
   "repository": {
