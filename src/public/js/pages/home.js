@@ -99,9 +99,9 @@ function afterMakeLink() {
 }
 
 function copyNewLink() {
-  txtNewLink.select();
-  txtNewLink.setSelectionRange(0, 99999); 
-  navigator.clipboard.writeText(txtNewLink.value);
+  txtNewLink.select()
+  txtNewLink.setSelectionRange(0, 99999)
+  document.execCommand('copy')
   btnCopyNewLink.classList.add('bg-[#52b69a]')
   btnCopyNewLink.childNodes[1].textContent = 'COPIED'
   setTimeout(() => {
