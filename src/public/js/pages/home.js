@@ -6,7 +6,7 @@ const iconLoading = document.getElementById('iconLoading')
 const divMainContainer = document.getElementById('divMainContainer')
 
 let divResult
-let anchorNewLink
+let txtNewLink
 let btnCopyNewLink
 
 function validURL(str) {
@@ -53,15 +53,19 @@ function validateAndGenNewLink(e) {
           divResult.classList.add('w-4/5', 'max-w-xl', 'mt-8')
           divResult.innerHTML = `
             <span class="text-lg font-bold">Your new link: </span>
-            <a id="anchorNewLink" class="p-2 bg-white rounded text-[#023e8a]" target="_blank"></a>
+            <input readonly id="txtNewLink" class="max-w-full p-2 bg-white rounded text-[#023e8a]"/>
             <button id="btnCopyNewLink" class="rounded px-2 py-1.5 bg-[#b08968] text-white transition ease-in-out delay-150 duration-300"><i class="fa-solid fa-copy text-lg mr-2"></i>COPY</button>
           `
           divMainContainer.appendChild(divResult)
         }
 
-        if (!anchorNewLink) anchorNewLink = document.getElementById('anchorNewLink')
-        anchorNewLink.setAttribute('href', link)
-        anchorNewLink.innerText = link
+        if (!txtNewLink) txtNewLink = document.getElementById('txtNewLink')
+        txtNewLink.setAttribute('value', link)
+        txtNewLink.addEventListener('click', function() {
+          window.open(link)
+          return false
+        }, { once: true })
+        txtNewLink.style.width = link.length + 'ch'
         if (!btnCopyNewLink) btnCopyNewLink = document.getElementById('btnCopyNewLink')
         btnCopyNewLink.addEventListener('click', copyNewLink)
 
@@ -95,7 +99,9 @@ function afterMakeLink() {
 }
 
 function copyNewLink() {
-  navigator.clipboard.writeText(anchorNewLink.innerText);
+  txtNewLink.select();
+  txtNewLink.setSelectionRange(0, 99999); 
+  navigator.clipboard.writeText(txtNewLink.value);
   btnCopyNewLink.classList.add('bg-[#52b69a]')
   btnCopyNewLink.childNodes[1].textContent = 'COPIED'
   setTimeout(() => {
