@@ -24,7 +24,6 @@ export class CControllerLinkRedirect implements IControllerLinkRedirect {
       return res.status(400).json({ message: 'Link not found!', })
     }
 
-    console.log(link.originalUrl)
     res.redirect(link.originalUrl)
     
   }
