@@ -12,7 +12,6 @@
     "start": "node build/src/main",
     "move-asset": "ncp src/config build/src/config && ncp src/public build/src/public && ncp src/views build/src/views",
     "build": "rimraf build && tsc && npm run move-asset",
-    "postinstall": "npm run build",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --fix --ext .ts",
     "prepare": "husky install",
