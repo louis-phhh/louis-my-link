@@ -8,6 +8,9 @@ const divMainContainer = document.getElementById('divMainContainer')
 let divResult
 let txtNewLink
 let btnCopyNewLink
+let anchorQRCode
+
+let qrCode
 
 function validURL(str) {
   const pattern = new RegExp('^(https?:\\/\\/)'+ // protocol
@@ -59,6 +62,24 @@ function validateAndGenNewLink(e) {
           divMainContainer.appendChild(divResult)
         }
 
+        if (!anchorQRCode) {
+          anchorQRCode = document.createElement('a')
+          anchorQRCode.classList.add('block', 'my-8', 'hidden')
+          anchorQRCode.id = 'anchorQRCode'
+          divMainContainer.appendChild(anchorQRCode)
+          qrCode = new QRCode(anchorQRCode, {
+            width: 192,
+            height: 192,
+          })
+        }
+        qrCode.clear()
+        qrCode.makeCode(link)
+        setTimeout(() => {
+          anchorQRCode.setAttribute('download', link)
+          anchorQRCode.setAttribute('href', document.querySelector('#anchorQRCode img').getAttribute('src'))
+          anchorQRCode.classList.remove('hidden')
+        }, 500)
+
         if (!txtNewLink) txtNewLink = document.getElementById('txtNewLink')
         txtNewLink.setAttribute('value', link)
         txtNewLink.addEventListener('click', function() {
@@ -89,6 +110,9 @@ function beforeMakeLink() {
   iconLoading.classList.add('!inline-block')
   btnMakeLink.setAttribute('disabled', 'true')
   btnMakeLink.classList.add('bg-[#b08968]')
+  if (anchorQRCode) {
+    anchorQRCode.classList.add('hidden')
+  }
 }
 
 function afterMakeLink() {
